@@ -23,10 +23,10 @@ const projects = [
     embed: "https://www.youtube.com/embed/37MUtxSc1Lw",
   },
   {
-    title: "AI Edit",
-    category: "AI / Tech",
-    url: "https://drive.google.com/file/d/1JrZZ8kUG5Lh2Kipj7r7cOeLaV3DR5NvU/view",
-    embed: "https://drive.google.com/file/d/1JrZZ8kUG5Lh2Kipj7r7cOeLaV3DR5NvU/preview",
+    title: "Gym Edit",
+    category: "Fitness",
+    url: "https://drive.google.com/file/d/1kl4RGrDTAcLgUKg3Wn-s-lSI56lNzT_f/view?usp=drive_link",
+    embed: "https://drive.google.com/file/d/1kl4RGrDTAcLgUKg3Wn-s-lSI56lNzT_f/preview",
   },
   {
     title: "Educational Edit",
@@ -35,10 +35,10 @@ const projects = [
     embed: "https://drive.google.com/file/d/1hyLI7lOhSRTIs_E7qsaKQic5QcTJDH0H/preview",
   },
   {
-    title: "Promotional Reel",
-    category: "Reel",
-    url: "https://www.instagram.com/reel/DUvT_7REjy4/",
-    embed: null,
+    title: "Marriage Promo",
+    category: "Wedding",
+    url: "https://drive.google.com/file/d/1MFQiI9XmZDR7nh7XCmlbnkUL5XY6pVn2/view?usp=drive_link",
+    embed: "https://drive.google.com/file/d/1MFQiI9XmZDR7nh7XCmlbnkUL5XY6pVn2/preview",
   },
   {
     title: "SAAS Product Edit",
