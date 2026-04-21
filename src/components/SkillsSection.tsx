@@ -2,12 +2,11 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const skills = [
-  { name: "CapCut", primary: true },
-  { name: "Alight Motion", primary: false },
-  { name: "Motion Graphics", primary: false },
-  { name: "Premiere Pro", primary: false },
-  { name: "Canva", primary: false },
-  { name: "Photoshop", primary: false },
+  { name: "Premiere Pro", level: 95 },
+  { name: "After Effects", level: 88 },
+  { name: "CapCut", level: 82 },
+  { name: "Alight Motion", level: 75 },
+  { name: "DaVinci Resolve", level: 68 },
 ];
 
 const SkillsSection = () => {
@@ -25,25 +24,45 @@ const SkillsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold">
-            <span className="gradient-text">Skills</span> & Tools
+            <span className="gradient-text">Software</span> Proficiency
           </h2>
+          <p className="text-muted-foreground mt-4 text-lg">
+            Tools I use to craft cinematic stories
+          </p>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto glass-card glow-border rounded-2xl p-8 md:p-12 space-y-8">
           {skills.map((skill, i) => (
             <motion.div
               key={skill.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              whileHover={{ scale: 1.1, y: -3 }}
-              className={`px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 cursor-default ${
-                skill.primary
-                  ? "bg-primary text-primary-foreground shadow-[0_0_25px_hsl(174_72%_52%/0.3)]"
-                  : "glass-card glow-border text-foreground hover:text-primary"
-              }`}
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              className="space-y-3"
             >
-              {skill.name}
+              <div className="flex items-center justify-between">
+                <span className="font-display text-lg md:text-xl font-semibold text-foreground">
+                  {skill.name}
+                </span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.6, delay: i * 0.12 + 0.8 }}
+                  className="font-mono text-sm text-primary font-bold"
+                >
+                  {skill.level}%
+                </motion.span>
+              </div>
+              <div className="relative h-3 w-full rounded-full bg-secondary/40 overflow-hidden backdrop-blur-sm border border-border/30">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={isInView ? { width: `${skill.level}%` } : {}}
+                  transition={{ duration: 1.2, delay: i * 0.12 + 0.2, ease: "easeOut" }}
+                  className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-primary via-primary to-accent shadow-[0_0_20px_hsl(174_72%_52%/0.6)]"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse" />
+                </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>
