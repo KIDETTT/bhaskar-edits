@@ -1,7 +1,19 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Play } from "lucide-react";
+
+// Extract a YouTube ID from an embed URL like https://www.youtube.com/embed/VIDEO_ID
+const getYouTubeId = (embed: string): string | null => {
+  const m = embed.match(/youtube\.com\/embed\/([\w-]+)/);
+  return m ? m[1] : null;
+};
+
+// Extract a Google Drive file ID from a preview URL
+const getDriveId = (embed: string): string | null => {
+  const m = embed.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
+  return m ? m[1] : null;
+};
 
 const projects = [
   {
