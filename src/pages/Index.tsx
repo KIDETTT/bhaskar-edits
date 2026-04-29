@@ -1,12 +1,14 @@
 import Navbar from "@/components/Navbar";
 import Marquee from "@/components/Marquee";
 import HeroSection from "@/components/HeroSection";
+import ServicesSection from "@/components/ServicesSection";
 import CtaVideoSection from "@/components/CtaVideoSection";
 import WorkSection from "@/components/WorkSection";
+import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import StatsSection from "@/components/StatsSection";
-import ContactSection from "@/components/ContactSection";
 import ReviewsSection from "@/components/ReviewsSection";
+import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
   return (
@@ -14,12 +16,14 @@ const Index = () => {
       <Navbar />
       <Marquee />
       <HeroSection />
+      <ServicesSection />
       <CtaVideoSection />
       <WorkSection />
+      <AboutSection />
       <SkillsSection />
       <StatsSection />
-      <ContactSection />
       <ReviewsSection />
+      <ContactSection />
     </div>
   );
 };
