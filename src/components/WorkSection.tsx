@@ -23,10 +23,10 @@ const projects = [
     embed: "https://www.youtube.com/embed/37MUtxSc1Lw",
   },
   {
-    title: "Gym Edit",
-    category: "Fitness",
-    url: "https://drive.google.com/file/d/1kl4RGrDTAcLgUKg3Wn-s-lSI56lNzT_f/view?usp=drive_link",
-    embed: "https://drive.google.com/file/d/1kl4RGrDTAcLgUKg3Wn-s-lSI56lNzT_f/preview",
+    title: "Educational Edit II",
+    category: "Education",
+    url: "https://drive.google.com/file/d/13HgmbuKbUTHA_08GESHUtOR8b9q1oRMn/view?usp=sharing",
+    embed: "https://drive.google.com/file/d/13HgmbuKbUTHA_08GESHUtOR8b9q1oRMn/preview",
   },
   {
     title: "Educational Edit",

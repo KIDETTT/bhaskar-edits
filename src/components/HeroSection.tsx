@@ -1,70 +1,145 @@
 import { motion } from "framer-motion";
-import heroBg from "@/assets/hero-bg.jpg";
+import { useEffect, useState } from "react";
+
+const phrases = [
+  "Cinematic Reels • Ads • Content",
+  "Edits That Stop The Scroll",
+  "Story-Driven Visuals",
+];
 
 const HeroSection = () => {
+  const [text, setText] = useState("");
+  const [phraseIdx, setPhraseIdx] = useState(0);
+
+  useEffect(() => {
+    const target = phrases[phraseIdx];
+    let i = 0;
+    setText("");
+    const id = setInterval(() => {
+      i++;
+      setText(target.slice(0, i));
+      if (i >= target.length) {
+        clearInterval(id);
+        setTimeout(() => setPhraseIdx((p) => (p + 1) % phrases.length), 2400);
+      }
+    }, 55);
+    return () => clearInterval(id);
+  }, [phraseIdx]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col justify-end overflow-hidden px-6 md:px-16 pb-20 pt-32"
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-[#1a0800] to-background" />
+      <div className="grain" />
+      <div className="scanlines" />
       <div className="absolute inset-0 hero-gradient" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/80" />
 
-      <div className="relative z-10 text-center px-6">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-primary font-medium tracking-[0.3em] uppercase text-sm mb-6"
-        >
-          Video Editor & Content Creator
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 glow-text"
-        >
-          I Create{" "}
-          <span className="gradient-text">Cinematic</span>
-          <br />
-          Edits
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-muted-foreground text-lg md:text-xl tracking-widest mb-10"
-        >
-          Reels • Ads • Content Creation
-        </motion.p>
-
-        <motion.a
-          href="https://wa.me/919315219956"
-          target="_blank"
-          rel="noopener noreferrer"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          whileHover={{ scale: 1.05, boxShadow: "0 0 35px hsl(174 72% 52% / 0.5)" }}
-          whileTap={{ scale: 0.97 }}
-          className="inline-block px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg transition-all duration-300"
-        >
-          Hire Me on WhatsApp
-        </motion.a>
+      {/* Vertical guide lines */}
+      <div className="absolute inset-0 flex pointer-events-none">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div key={i} className="flex-1 border-r border-foreground/[0.05]" />
+        ))}
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2"
+      {/* Horizontal scanline */}
+      <div
+        className="absolute left-0 right-0 h-px pointer-events-none z-10"
+        style={{
+          background: "linear-gradient(to right, transparent, hsl(var(--primary) / 0.6), transparent)",
+          animation: "scanlineDrop 5s ease-in-out infinite",
+        }}
+      />
+
+      {/* Corner brackets */}
+      <div
+        className="absolute top-24 left-6 md:left-16 w-10 h-10 border-t border-l pointer-events-none"
+        style={{ borderColor: "hsl(var(--primary))", animation: "cornerPulse 3s ease-in-out infinite" }}
+      />
+      <div
+        className="absolute top-24 right-6 md:right-16 w-10 h-10 border-t border-r pointer-events-none"
+        style={{ borderColor: "hsl(var(--primary))", animation: "cornerPulse 3s 0.5s ease-in-out infinite" }}
+      />
+      <div
+        className="absolute bottom-20 left-6 md:left-16 w-10 h-10 border-b border-l pointer-events-none"
+        style={{ borderColor: "hsl(var(--primary))", animation: "cornerPulse 3s 1s ease-in-out infinite" }}
+      />
+      <div
+        className="absolute bottom-20 right-6 md:right-16 w-10 h-10 border-b border-r pointer-events-none"
+        style={{ borderColor: "hsl(var(--primary))", animation: "cornerPulse 3s 1.5s ease-in-out infinite" }}
+      />
+
+      <div className="absolute top-24 right-6 md:right-16 font-display text-sm tracking-[0.2em] opacity-30 z-10">
+        © 2026
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl">
+        <p className="text-[0.75rem] tracking-[0.35em] uppercase text-primary mb-6 min-h-[1em]">
+          {text}
+          <span className="animate-pulse">|</span>
+        </p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="font-display leading-[0.88] text-[clamp(4.5rem,13vw,14rem)]"
         >
-          <div className="w-1 h-2 rounded-full bg-primary" />
+          BHASKAR<br />
+          <span className="text-primary">EDITS.</span>
+        </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="flex flex-wrap gap-8 md:gap-12 mt-10"
+        >
+          {[
+            { num: "200+", label: "Projects Edited" },
+            { num: "50+", label: "Happy Clients" },
+            { num: "5Y", label: "Experience" },
+          ].map((s) => (
+            <div key={s.label}>
+              <div className="font-display text-3xl text-gold leading-none">{s.num}</div>
+              <div className="text-[0.6rem] tracking-[0.15em] uppercase opacity-40 mt-1">{s.label}</div>
+            </div>
+          ))}
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mt-12"
+        >
+          <p className="max-w-md text-base leading-relaxed opacity-60">
+            Video editor crafting cinematic reels, ads, weddings, SaaS promos and
+            content that converts. Story first, polish always.
+          </p>
+
+          <a
+            href="https://wa.me/919315219956"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display tracking-[0.2em] text-sm uppercase hover:bg-gold hover:text-background transition-colors duration-300"
+          >
+            Hire Me on WhatsApp
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </motion.div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[0.6rem] tracking-[0.2em] uppercase opacity-40">
+        <div
+          className="w-px h-14 bg-foreground"
+          style={{ animation: "scrollPulse 2s infinite" }}
+        />
+        Scroll
       </div>
     </section>
   );
