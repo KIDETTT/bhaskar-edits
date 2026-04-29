@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const phrases = [
-  "Cinematic Reels • Ads • Content",
+  "High-Retention Video Editing",
   "Edits That Stop The Scroll",
   "Story-Driven Visuals",
 ];
@@ -71,9 +71,25 @@ const HeroSection = () => {
         style={{ borderColor: "hsl(var(--primary))", animation: "cornerPulse 3s 1.5s ease-in-out infinite" }}
       />
 
-      <div className="absolute top-24 right-6 md:right-16 font-display text-sm tracking-[0.2em] opacity-30 z-10">
+      <div className="absolute top-24 right-6 md:right-16 font-display text-sm tracking-[0.2em] opacity-30 z-10 hidden md:block">
         © 2026
       </div>
+
+      {/* Availability pill */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="absolute top-28 left-6 md:left-16 z-10 inline-flex items-center gap-2 px-3 py-1.5 border border-primary/40 bg-primary/10 backdrop-blur-sm"
+      >
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+        </span>
+        <span className="text-[0.6rem] tracking-[0.25em] uppercase font-display text-foreground/90">
+          Currently accepting new clients
+        </span>
+      </motion.div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl">
@@ -92,44 +108,64 @@ const HeroSection = () => {
           <span className="text-primary">EDITS.</span>
         </motion.h1>
 
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="max-w-2xl text-lg md:text-xl leading-relaxed mt-8 text-foreground/80"
+        >
+          Premium video editing for <span className="text-gold">creators, founders & brands</span> —
+          built to boost retention, watch-time, and conversions.
+        </motion.p>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="flex flex-wrap gap-8 md:gap-12 mt-10"
+          className="flex flex-wrap items-center gap-4 mt-8"
         >
-          {[
-            { num: "200+", label: "Projects Edited" },
-            { num: "50+", label: "Happy Clients" },
-            { num: "5Y", label: "Experience" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="font-display text-3xl text-gold leading-none">{s.num}</div>
-              <div className="text-[0.6rem] tracking-[0.15em] uppercase opacity-40 mt-1">{s.label}</div>
-            </div>
-          ))}
+          <a
+            href="https://wa.me/919315219956?text=Hi%20Bhaskar%2C%20I%27d%20like%20to%20book%20a%20free%20call."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 px-7 py-4 bg-primary text-primary-foreground font-display tracking-[0.2em] text-sm uppercase hover:bg-gold hover:text-background transition-colors duration-300"
+          >
+            Book a Free Call
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+          <a
+            href="#work"
+            className="group inline-flex items-center gap-3 px-7 py-4 border border-foreground/30 text-foreground font-display tracking-[0.2em] text-sm uppercase hover:border-primary hover:text-primary transition-colors duration-300"
+          >
+            View My Work
+          </a>
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.85 }}
+          className="text-xs md:text-sm text-foreground/50 mt-5 tracking-wide"
+        >
+          Helping creators and brands grow with high-retention video editing.
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mt-12"
+          transition={{ duration: 0.6, delay: 1 }}
+          className="flex flex-wrap gap-8 md:gap-14 mt-12 pt-8 border-t border-foreground/10"
         >
-          <p className="max-w-md text-base leading-relaxed opacity-60">
-            Video editor crafting cinematic reels, ads, weddings, SaaS promos and
-            content that converts. Story first, polish always.
-          </p>
-
-          <a
-            href="https://wa.me/919315219956"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-display tracking-[0.2em] text-sm uppercase hover:bg-gold hover:text-background transition-colors duration-300"
-          >
-            Hire Me on WhatsApp
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </a>
+          {[
+            { num: "1.5+", label: "Years Experience" },
+            { num: "50+", label: "Projects Completed" },
+            { num: "35+", label: "Clients Served" },
+          ].map((s) => (
+            <div key={s.label}>
+              <div className="font-display text-3xl md:text-4xl text-gold leading-none">{s.num}</div>
+              <div className="text-[0.6rem] tracking-[0.15em] uppercase opacity-50 mt-2">{s.label}</div>
+            </div>
+          ))}
         </motion.div>
       </div>
 
