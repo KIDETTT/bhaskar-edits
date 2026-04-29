@@ -96,15 +96,15 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
       rel="noopener noreferrer"
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ scale: 1.03, y: -5 }}
-      className="group glass-card glow-border overflow-hidden block cursor-pointer"
+      transition={{ duration: 0.6, delay: index * 0.08 }}
+      whileHover={{ y: -6 }}
+      className="group relative block cursor-pointer overflow-hidden border border-foreground/[0.08] bg-[#0a0a0a]"
     >
       <div className="relative aspect-video bg-secondary overflow-hidden">
         {project.embed ? (
           <iframe
             src={project.embed}
-            className="w-full h-full"
+            className="w-full h-full transition-transform duration-700 group-hover:scale-105"
             allow="autoplay; encrypted-media"
             allowFullScreen
             loading="lazy"
@@ -115,16 +115,25 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
             <Play className="w-12 h-12 text-primary opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300 pointer-events-none" />
+        <div className="absolute top-4 right-4 font-display text-5xl text-foreground/10 leading-none pointer-events-none">
+          {String(index + 1).padStart(2, "0")}
+        </div>
+        {/* hover play badge */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-primary flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-300 pointer-events-none">
+          <Play className="w-5 h-5 text-primary-foreground ml-0.5" fill="currentColor" />
+        </div>
       </div>
-      <div className="p-5">
-        <span className="text-xs font-medium text-primary uppercase tracking-wider">
+      <div className="p-5 border-t border-foreground/[0.06]">
+        <span className="text-[0.65rem] font-medium text-primary uppercase tracking-[0.3em]">
           {project.category}
         </span>
-        <h3 className="font-display text-lg font-semibold mt-1 text-foreground group-hover:text-primary transition-colors duration-300">
+        <h3 className="font-display text-2xl mt-2 text-foreground group-hover:text-primary transition-colors duration-300 tracking-wide">
           {project.title}
         </h3>
       </div>
+      {/* underline */}
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
     </motion.a>
   );
 };
@@ -134,24 +143,26 @@ const WorkSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="work" className="py-24 md:py-32">
-      <div className="container mx-auto px-6">
+    <section id="work" className="py-24 md:py-32 border-t border-foreground/[0.08] relative">
+      <div className="grain" />
+      <div className="container mx-auto px-6 relative">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold">
-            My <span className="gradient-text">Work</span>
+          <div className="section-label mb-4">Selected Work / 002</div>
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.9]">
+            MY <span className="text-primary">WORK</span>
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-md mx-auto">
-            A selection of recent projects showcasing my editing style and versatility.
+          <p className="text-foreground/60 mt-6 max-w-md text-base">
+            A selection of recent projects showcasing editing style, pacing, and versatility across formats.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2px] bg-foreground/[0.08]">
           {projects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
