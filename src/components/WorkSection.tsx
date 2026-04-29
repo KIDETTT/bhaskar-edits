@@ -103,6 +103,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
   // Only mount the iframe when card is near the viewport AND user activates it
   const [shouldMount, setShouldMount] = useState(false);
   const [activated, setActivated] = useState(false);
+  const [mediaLoaded, setMediaLoaded] = useState(false);
 
   // Mount iframe when card enters viewport (slight delay so we don't slam mobile bandwidth)
   useEffect(() => {
@@ -118,6 +119,11 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
   // For YouTube, defer iframe until click (saves a lot on mobile).
   // For Drive (no thumbnail API), mount lazily after entering viewport.
   const showIframe = ytId ? activated : shouldMount;
+
+  // Reset loaded state when the visible media swaps (thumb -> iframe)
+  useEffect(() => {
+    setMediaLoaded(false);
+  }, [showIframe]);
 
   const handleClick = (e: React.MouseEvent) => {
     if (ytId && !activated) {
