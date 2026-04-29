@@ -19,78 +19,104 @@ const projects = [
   {
     title: "Podcast Edit",
     category: "Podcast",
+    style: "Multi-cam, dynamic",
+    impact: "Boosted retention",
     url: "https://drive.google.com/file/d/1hTpGhH9RP9EuZFgqk5V59Ccgv4EYqfnq/view?usp=sharing",
     embed: "https://drive.google.com/file/d/1hTpGhH9RP9EuZFgqk5V59Ccgv4EYqfnq/preview",
   },
   {
     title: "Website Tour",
-    category: "Tour",
+    category: "Product Tour",
+    style: "Smooth screencast",
+    impact: "Made for conversion",
     url: "https://www.youtube.com/watch?v=LOJvSWsZI8Q",
     embed: "https://www.youtube.com/embed/LOJvSWsZI8Q",
   },
   {
     title: "Documentary Edit",
     category: "Documentary",
+    style: "Cinematic, story-driven",
+    impact: "Emotion-led pacing",
     url: "https://www.youtube.com/watch?v=37MUtxSc1Lw",
     embed: "https://www.youtube.com/embed/37MUtxSc1Lw",
   },
   {
     title: "Educational Edit II",
     category: "Education",
+    style: "Clean, info-dense",
+    impact: "Made for YouTube growth",
     url: "https://drive.google.com/file/d/13HgmbuKbUTHA_08GESHUtOR8b9q1oRMn/view?usp=sharing",
     embed: "https://drive.google.com/file/d/13HgmbuKbUTHA_08GESHUtOR8b9q1oRMn/preview",
   },
   {
     title: "Educational Edit",
     category: "Education",
+    style: "Animated explainer",
+    impact: "High watch-time",
     url: "https://drive.google.com/file/d/1hyLI7lOhSRTIs_E7qsaKQic5QcTJDH0H/view",
     embed: "https://drive.google.com/file/d/1hyLI7lOhSRTIs_E7qsaKQic5QcTJDH0H/preview",
   },
   {
     title: "Marriage Promo",
     category: "Wedding",
+    style: "Cinematic color grade",
+    impact: "Emotion-driven story",
     url: "https://drive.google.com/file/d/1MFQiI9XmZDR7nh7XCmlbnkUL5XY6pVn2/view?usp=drive_link",
     embed: "https://drive.google.com/file/d/1MFQiI9XmZDR7nh7XCmlbnkUL5XY6pVn2/preview",
   },
   {
-    title: "SAAS Product Edit",
-    category: "SAAS",
+    title: "SaaS Product Edit",
+    category: "SaaS",
+    style: "Sleek, motion-graphic",
+    impact: "Built to convert",
     url: "https://drive.google.com/file/d/1IZMqXyT4rH6sIeu0YjZgdPJq-LUMpjPR/view?usp=drive_link",
     embed: "https://drive.google.com/file/d/1IZMqXyT4rH6sIeu0YjZgdPJq-LUMpjPR/preview",
   },
   {
     title: "AI Document Style",
     category: "AI / Docs",
+    style: "Modern, typographic",
+    impact: "Stylized & shareable",
     url: "https://drive.google.com/file/d/1R_tNkNba2Mwy19bE_9fahTp5D862FAqz/view?usp=drive_link",
     embed: "https://drive.google.com/file/d/1R_tNkNba2Mwy19bE_9fahTp5D862FAqz/preview",
   },
   {
-    title: "SAAS Video",
-    category: "SAAS",
+    title: "SaaS Video",
+    category: "SaaS",
+    style: "Punchy, on-brand",
+    impact: "Lead-gen optimized",
     url: "https://drive.google.com/file/d/1aej8-acTVCGeA5Kf23j3-ofuctZPI-Qa/view?usp=sharing",
     embed: "https://drive.google.com/file/d/1aej8-acTVCGeA5Kf23j3-ofuctZPI-Qa/preview",
   },
   {
     title: "Show Reel",
     category: "Showreel",
+    style: "High-energy montage",
+    impact: "Range showcase",
     url: "https://drive.google.com/file/d/1IvCqyzh2O_9eyp0DvRuPmSQYupJRaS4Q/view?usp=sharing",
     embed: "https://drive.google.com/file/d/1IvCqyzh2O_9eyp0DvRuPmSQYupJRaS4Q/preview",
   },
   {
     title: "2D Animation",
     category: "Animation",
+    style: "Frame-by-frame motion",
+    impact: "Brand-friendly visuals",
     url: "https://drive.google.com/file/d/1LYBtS_iU6zg8vb8LRPDt0cAL6A1NQJnU/view?usp=sharing",
     embed: "https://drive.google.com/file/d/1LYBtS_iU6zg8vb8LRPDt0cAL6A1NQJnU/preview",
   },
   {
     title: "Informational",
     category: "Informational",
+    style: "Caption-driven, snappy",
+    impact: "Short-form optimized",
     url: "https://drive.google.com/file/d/13gzxtE0qxCurBrT6WavicXIb3NOt10DZ/view?usp=sharing",
     embed: "https://drive.google.com/file/d/13gzxtE0qxCurBrT6WavicXIb3NOt10DZ/preview",
   },
   {
     title: "Website Mockup",
     category: "Mockup",
+    style: "UI-driven walkthrough",
+    impact: "Pitch-ready visuals",
     url: "https://drive.google.com/file/d/1FohRoRiW_LDF1kddkNf9MgOeHClC0ir4/view?usp=sharing",
     embed: "https://drive.google.com/file/d/1FohRoRiW_LDF1kddkNf9MgOeHClC0ir4/preview",
   },
@@ -189,12 +215,20 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
         )}
       </div>
       <div className="p-5 border-t border-foreground/[0.06]">
-        <span className="text-[0.65rem] font-medium text-primary uppercase tracking-[0.3em]">
-          {project.category}
-        </span>
-        <h3 className="font-display text-2xl mt-2 text-foreground group-hover:text-primary transition-colors duration-300 tracking-wide">
+        <div className="flex items-center justify-between gap-3 mb-2">
+          <span className="text-[0.65rem] font-medium text-primary uppercase tracking-[0.3em]">
+            {project.category}
+          </span>
+          <span className="text-[0.6rem] text-gold uppercase tracking-[0.2em] font-display">
+            {project.impact}
+          </span>
+        </div>
+        <h3 className="font-display text-2xl text-foreground group-hover:text-primary transition-colors duration-300 tracking-wide">
           {project.title}
         </h3>
+        <p className="text-[0.7rem] text-foreground/50 mt-2 tracking-wide">
+          {project.style}
+        </p>
       </div>
       {/* underline */}
       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
