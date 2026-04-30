@@ -7,6 +7,11 @@ const getYouTubeId = (embed: string): string | null => {
   return m ? m[1] : null;
 };
 
+const getDriveId = (embed: string): string | null => {
+  const m = embed.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
+  return m ? m[1] : null;
+};
+
 // Cinematic gradient palette per category (mirrors the reference HTML)
 const G = {
   showreel: "linear-gradient(135deg,#0a0a0a 0%,#1a0500 40%,#3d0900 70%,rgba(255,60,30,0.13) 100%)",
