@@ -113,11 +113,11 @@ const ProjectCard = ({
       className={`group relative overflow-hidden cursor-pointer bg-[#0d0d0d] border border-foreground/[0.06] ${span} ${minH}`}
     >
       {/* Thumbnail layer */}
-      {ytThumb ? (
+      {realThumb && !thumbFailed ? (
         <div
           className="absolute inset-0 transition-all duration-700 group-hover:scale-[1.06] group-hover:brightness-[0.18] group-hover:saturate-[0.3]"
           style={{
-            backgroundImage: `url(${ytThumb}), linear-gradient(135deg,#050508,#12101a)`,
+            backgroundImage: `url(${realThumb}), linear-gradient(135deg,#050508,#12101a)`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -128,7 +128,7 @@ const ProjectCard = ({
             className="absolute inset-0 transition-all duration-700 group-hover:scale-[1.06] group-hover:brightness-[0.25]"
             style={{ background: project.thumb }}
           />
-          {/* Drive: emoji + category label centered */}
+          {/* Drive fallback: emoji + category label centered */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-[0.22] z-[1]">
             <div
               className="grayscale"
