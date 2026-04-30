@@ -7,6 +7,11 @@ const getYouTubeId = (embed: string): string | null => {
   return m ? m[1] : null;
 };
 
+const getDriveId = (embed: string): string | null => {
+  const m = embed.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
+  return m ? m[1] : null;
+};
+
 // Cinematic gradient palette per category (mirrors the reference HTML)
 const G = {
   showreel: "linear-gradient(135deg,#0a0a0a 0%,#1a0500 40%,#3d0900 70%,rgba(255,60,30,0.13) 100%)",
@@ -65,7 +70,19 @@ const ProjectCard = ({
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const ytId = getYouTubeId(project.e);
+  const driveId = !ytId ? getDriveId(project.e) : null;
   const ytThumb = ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : null;
+  const driveThumb = driveId ? `https://drive.google.com/thumbnail?id=${driveId}&sz=w1600` : null;
+  const realThumb = ytThumb || driveThumb;
+  const [thumbFailed, setThumbFailed] = useState(false);
+
+  // Preload drive thumbnail to detect failure (drive thumbnails sometimes 404 / are blocked)
+  useEffect(() => {
+    if (!driveThumb) return;
+    const img = new Image();
+    img.onerror = () => setThumbFailed(true);
+    img.src = driveThumb;
+  }, [driveThumb]);
 
   // Mouse-tracked glow
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -96,11 +113,11 @@ const ProjectCard = ({
       className={`group relative overflow-hidden cursor-pointer bg-[#0d0d0d] border border-foreground/[0.06] ${span} ${minH}`}
     >
       {/* Thumbnail layer */}
-      {ytThumb ? (
+      {realThumb && !thumbFailed ? (
         <div
           className="absolute inset-0 transition-all duration-700 group-hover:scale-[1.06] group-hover:brightness-[0.18] group-hover:saturate-[0.3]"
           style={{
-            backgroundImage: `url(${ytThumb}), linear-gradient(135deg,#050508,#12101a)`,
+            backgroundImage: `url(${realThumb}), linear-gradient(135deg,#050508,#12101a)`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -111,7 +128,7 @@ const ProjectCard = ({
             className="absolute inset-0 transition-all duration-700 group-hover:scale-[1.06] group-hover:brightness-[0.25]"
             style={{ background: project.thumb }}
           />
-          {/* Drive: emoji + category label centered */}
+          {/* Drive fallback: emoji + category label centered */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-[0.22] z-[1]">
             <div
               className="grayscale"
