@@ -46,9 +46,29 @@ const HeroSection = () => {
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-[#1a0800] to-background" />
+
+      {/* 3D scene (desktop only, deferred) */}
+      {enable3D && (
+        <div className="absolute inset-0 opacity-80 mix-blend-screen pointer-events-none">
+          <Suspense fallback={null}>
+            <HeroScene3D />
+          </Suspense>
+        </div>
+      )}
+
+      {/* Vignette to keep text legible over 3D */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 80% at 30% 60%, transparent 0%, hsl(var(--background) / 0.55) 60%, hsl(var(--background) / 0.85) 100%)",
+        }}
+      />
+
       <div className="grain" />
       <div className="scanlines" />
       <div className="absolute inset-0 hero-gradient" />
+
 
       {/* Vertical guide lines */}
       <div className="absolute inset-0 flex pointer-events-none">
