@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { lazy, Suspense, useEffect, useState } from "react";
 
 const HeroScene3D = lazy(() => import("./HeroScene3D"));
+const HireBot = lazy(() => import("./HireBot"));
 
 const phrases = [
   "Edits Engineered For Growth",
@@ -68,6 +69,12 @@ const HeroSection = () => {
       <div className="grain" />
       <div className="scanlines" />
       <div className="absolute inset-0 hero-gradient" />
+
+      {/* Hire Bot — interactive 3D assistant */}
+      <Suspense fallback={null}>
+        <HireBot />
+      </Suspense>
+
 
 
       {/* Vertical guide lines */}
