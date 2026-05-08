@@ -70,6 +70,12 @@ const HeroSection = () => {
       <div className="scanlines" />
       <div className="absolute inset-0 hero-gradient" />
 
+      {/* Hire Bot — interactive 3D assistant */}
+      <Suspense fallback={null}>
+        <HireBot />
+      </Suspense>
+
+
 
       {/* Vertical guide lines */}
       <div className="absolute inset-0 flex pointer-events-none">
