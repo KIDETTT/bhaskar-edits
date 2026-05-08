@@ -161,7 +161,7 @@ const HeroSection = () => {
             href="https://wa.me/919315219956?text=Hi%20Bhaskar%2C%20I%27d%20like%20to%20book%20a%20free%20call."
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-7 py-4 bg-primary text-primary-foreground font-display tracking-[0.2em] text-sm uppercase hover:bg-gold hover:text-background transition-colors duration-300"
+            className="btn-glow group inline-flex items-center gap-3 px-7 py-4 bg-primary text-primary-foreground font-display tracking-[0.2em] text-sm uppercase hover:bg-gold hover:text-background transition-colors duration-300"
           >
             Start Your Project
             <span className="group-hover:translate-x-1 transition-transform">→</span>
