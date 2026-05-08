@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+
+const HeroScene3D = lazy(() => import("./HeroScene3D"));
 
 const phrases = [
   "Edits Engineered For Growth",
