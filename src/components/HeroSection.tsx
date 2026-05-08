@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+
+const HeroScene3D = lazy(() => import("./HeroScene3D"));
 
 const phrases = [
   "Edits Engineered For Growth",
@@ -10,6 +12,17 @@ const phrases = [
 const HeroSection = () => {
   const [text, setText] = useState("");
   const [phraseIdx, setPhraseIdx] = useState(0);
+  const [enable3D, setEnable3D] = useState(false);
+
+  useEffect(() => {
+    // Defer 3D mount until after first paint; skip on small screens / reduced motion
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const big = window.matchMedia("(min-width: 768px)").matches;
+    if (!reduced && big) {
+      const t = setTimeout(() => setEnable3D(true), 250);
+      return () => clearTimeout(t);
+    }
+  }, []);
 
   useEffect(() => {
     const target = phrases[phraseIdx];
@@ -33,9 +46,29 @@ const HeroSection = () => {
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-[#1a0800] to-background" />
+
+      {/* 3D scene (desktop only, deferred) */}
+      {enable3D && (
+        <div className="absolute inset-0 opacity-80 mix-blend-screen pointer-events-none">
+          <Suspense fallback={null}>
+            <HeroScene3D />
+          </Suspense>
+        </div>
+      )}
+
+      {/* Vignette to keep text legible over 3D */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 80% at 30% 60%, transparent 0%, hsl(var(--background) / 0.55) 60%, hsl(var(--background) / 0.85) 100%)",
+        }}
+      />
+
       <div className="grain" />
       <div className="scanlines" />
       <div className="absolute inset-0 hero-gradient" />
+
 
       {/* Vertical guide lines */}
       <div className="absolute inset-0 flex pointer-events-none">
@@ -128,7 +161,7 @@ const HeroSection = () => {
             href="https://wa.me/919315219956?text=Hi%20Bhaskar%2C%20I%27d%20like%20to%20book%20a%20free%20call."
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-7 py-4 bg-primary text-primary-foreground font-display tracking-[0.2em] text-sm uppercase hover:bg-gold hover:text-background transition-colors duration-300"
+            className="btn-glow group inline-flex items-center gap-3 px-7 py-4 bg-primary text-primary-foreground font-display tracking-[0.2em] text-sm uppercase hover:bg-gold hover:text-background transition-colors duration-300"
           >
             Start Your Project
             <span className="group-hover:translate-x-1 transition-transform">→</span>
